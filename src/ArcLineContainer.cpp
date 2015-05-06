@@ -1,9 +1,9 @@
 #include "ArcLineContainer.h"
 
 
-ArcLineContainer::ArcLineContainer()
+ArcLineContainer::ArcLineContainer() :
+currentLine( ofPoint( ofGetWidth() / 2, ofGetHeight() / 2 ) )
 {
-	currentLine = std::make_shared< ArcLine >( ofPoint( ofGetWidth() / 2, ofGetHeight() / 2 ) );
 }
 
 ArcLineContainer::~ArcLineContainer()
@@ -12,7 +12,7 @@ ArcLineContainer::~ArcLineContainer()
 
 void ArcLineContainer::update()
 {
-	this->currentLine->update();
+	this->currentLine.update();
 }
 
 void ArcLineContainer::draw()
@@ -21,14 +21,14 @@ void ArcLineContainer::draw()
 		l.draw();
 	}
 
-	this->currentLine->draw();
+	this->currentLine.draw();
 }
 
 void ArcLineContainer::saveCurrent()
 {
-	this->lines.push_back( *this->currentLine );
-	ofPoint newCenter = this->calcNewCenter( *this->currentLine->getCenter(), this->radiusForNewCenter, this->degreeForNewCenter );
-	this->currentLine = std::make_shared< ArcLine >( newCenter );
+	this->lines.push_back( this->currentLine );
+	ofPoint newCenter = this->calcNewCenter( this->currentLine.getCenter(), this->radiusForNewCenter, this->degreeForNewCenter );
+	this->currentLine = ArcLine( newCenter );
 }
 
 void ArcLineContainer::setDegreeForNewCenter( float _degree )
@@ -43,22 +43,22 @@ void ArcLineContainer::setRadiusForNewCenter( float _radius )
 
 void ArcLineContainer::setStartDegreeCurrentLine( float _startDegree )
 {
-	this->currentLine->setDegreeStart( _startDegree );
+	this->currentLine.setDegreeStart( _startDegree );
 }
 
 void ArcLineContainer::setEndDegreeCurrentLine( float _endDegree )
 {
-	this->currentLine->setDegreeEnd( _endDegree );
+	this->currentLine.setDegreeEnd( _endDegree );
 }
 
 void ArcLineContainer::setRadiusCurrentLine( float _radius )
 {
-	this->currentLine->setRadius( _radius );
+	this->currentLine.setRadius( _radius );
 }
 
 void ArcLineContainer::setCenterCurrentLine( ofPoint _point )
 {
-	this->currentLine->setCenter( _point );
+	this->currentLine.setCenter( _point );
 }
 
 ofPoint ArcLineContainer::calcNewCenter( ofPoint _center, float _radius, float _degree )

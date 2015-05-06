@@ -2,13 +2,11 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-
-	container = std::make_shared< ArcLineContainer >();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	container->update();
+	container.update();
 }
 
 //--------------------------------------------------------------
@@ -18,17 +16,17 @@ void ofApp::draw(){
 	ofNoFill();
 	ofSetColor( 255 );
 
-	container->draw();
+	container.draw();
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
 	switch( key ) {
 	case 'c':
-		container->setCenterCurrentLine( ofPoint( ofGetMouseX(), ofGetMouseY() ) );
+		container.setCenterCurrentLine( ofPoint( ofGetMouseX(), ofGetMouseY() ) );
 		break;
 	case 's':
-		container->saveCurrent();
+		container.saveCurrent();
 		break;
 	}
 }
@@ -40,15 +38,15 @@ void ofApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-	container->setStartDegreeCurrentLine( ofMap( x, 0, ofGetWidth(), 0, 360 ) );
-	container->setEndDegreeCurrentLine( ofMap( y, 0, ofGetHeight(), 0, 360 ) );
+	container.setStartDegreeCurrentLine( ofMap( x, 0, ofGetWidth(), 0, 360 ) );
+	container.setEndDegreeCurrentLine( ofMap( y, 0, ofGetHeight(), 0, 360 ) );
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-	container->setRadiusCurrentLine( ofMap( x, 0, ofGetWidth(), 0, 300 ) );
-	container->setDegreeForNewCenter( ofMap( y, 0, ofGetHeight(), 0, 360 ) );
-	container->setRadiusForNewCenter( ofMap( y, 0, ofGetHeight(), 0, 300 ) );
+	container.setRadiusCurrentLine( ofMap( x, 0, ofGetWidth(), 0, 300 ) );
+	container.setDegreeForNewCenter( ofMap( y, 0, ofGetHeight(), 0, 360 ) );
+	container.setRadiusForNewCenter( ofMap( y, 0, ofGetHeight(), 0, 300 ) );
 }
 
 //--------------------------------------------------------------

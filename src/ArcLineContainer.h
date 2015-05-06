@@ -10,7 +10,7 @@ public:
 	ArcLineContainer();
 	~ArcLineContainer();
 
-	std::shared_ptr< ArcLine > currentLine;
+	ArcLine currentLine;
 	std::vector< ArcLine > lines;
 
 	void update();

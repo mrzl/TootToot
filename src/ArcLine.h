@@ -10,7 +10,7 @@ public:
 	ArcLine( ofPoint _center );
 	~ArcLine();
 
-	std::shared_ptr< ofPolyline > polyLine;
+	ofPolyline polyLine;
 
 	void update();
 	void draw();
@@ -20,12 +20,12 @@ public:
 	void setRadius( float _radius );
 	void setCenter( ofPoint _point );
 
-	std::shared_ptr< ofPoint > getCenter();
+	ofPoint getCenter();
 
 private:
-	std::shared_ptr< ofPoint > center;
-	std::shared_ptr< float > degreeStart;
-	std::shared_ptr< float > degreeEnd;
-	std::shared_ptr< float > radius;
+	ofPoint center;
+	float degreeStart;
+	float degreeEnd;
+	float radius;
 };
 
